@@ -5,7 +5,6 @@
     <title>HM codetest</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link href="css/main.css" rel="stylesheet" type="text/css" />
     <link
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
@@ -14,11 +13,33 @@
   </head>
   <body>
     <div class="flex-container">
-      <button
-        class="btn btn-title-primary border-primary gradient-bg-primary"
-      >
+      <button class="btn btn-title-primary border-primary gradient-bg-primary">
         Delete
       </button>
     </div>
+    <main class="flex-container">
+      <form>
+        <label for="input-movie-title"
+          >Find more info about a movie at Omdb:</label
+        >
+        <input
+          list="datalist-movie-title"
+          id="input-movie-title"
+          name="movie-titles"
+        />
+        <datalist id="datalist-movie-title">
+            <!-- <option value='some result'></option> -->
+        </datalist>
+      </form>
+    </div>
+    <div class="flex-container">
+      <article>
+        <h1>Search history</h1>
+        <button id="button-clear-history">Clear search history</button>
+        </button>
+        <ol id="ol-search-history"></ol>
+      </article>
+    </main>
+    <script src="js/main.js"></script>
   </body>
 </html>
