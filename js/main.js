@@ -53,11 +53,10 @@ const insertResultIntoDOM = (searchStr, { Title: title, Error: error }) => {
   btnElm.addEventListener("click", () => deleteElement(timestamp));
   headingElm.innerHTML += txt;
   headingElm.classList.add("u-w-50");
-  liElm.classList.add("search-history-item", "border-primary-low");
-  articleElm.classList.add("article-list-item", "u-lh-4", "u-rel", "u-pl-1");
-  pElm.classList.add("list-item-date", "u-abs");
+  liElm.classList.add("border-primary-low");
+  articleElm.classList.add("u-lh-4", "u-rel", "u-pl-1");
+  pElm.classList.add("u-pt-03", "u-abs");
   btnElm.classList.add(
-    "btn-list-item",
     "u-border-none",
     "u-abs",
     "input-field-icon",
@@ -126,7 +125,7 @@ const doApiSearch = async (str, requestApiFkn, onSuccess) => {
   const searchStr = str.toLowerCase().replace(/\s/g, "+");
   if (searchStr.length > 0) {
     const response = await requestApiFkn(searchStr);
-    console.log("doApiSearch:", response);
+    console.log("doApiSearch:response:", response);
     onSuccess(str, response);
     return response;
   } else {
@@ -166,7 +165,6 @@ inputMovieTitleElm.addEventListener("input", e => {
     );
     const title = response && response.Title;
     searchHistory = runIfNotPresent(searchHistory, title, insertOptionIntoDOM);
-    console.log(searchHistory);
   };
   stateTimerId = restartTimerAndInvoke(
     searchAndAddToHistory,

@@ -14,23 +14,24 @@
   <body>
     <div class="u-flex-wrap-container u-pt-4 u-pb-4">
       <button
-        class="btn btn-title-primary border-primary gradient-bg-primary"
+        class="btn-sunny border-primary gradient-bg-sunny cross-icon u-rel"
       >
         Delete
       </button>
     </div>
     <main class="u-flex-wrap-container u-pt-4 u-pb-4">
-      <div class="search-wrap-primary max-width-small">
+      <div class="search-wrap-primary bg-light max-width-small">
         <form class="form-primary max-width-small u-margin-low">
           <div class="u-rel">
             <label for="input-movie-title"></label>
             <input
-              class="input-primary u-lh-4 u-pl-1 border-primary-1px"
+              class="u-w-100 u-lh-4 u-pl-1 border-primary-1px"
               list="datalist-movie-title"
               id="input-movie-title"
               name="movie-titles"
+              placeholder="Type to trigger automatic search"
             />
-            <button class="u-border-none input-field-icon u-bg-white cross-icon">
+            <button class="u-border-none input-field-icon u-abs u-bg-white cross-icon">
               <span class="u-hide">clear search</span>
             </button>
             <datalist id="datalist-movie-title">
@@ -39,32 +40,12 @@
           </div>
         </form>
         <section>
-          <div class="list-wrap-heading u-lh-4 u-rel border-primary-low">
+          <div class="u-lh-4 u-rel border-primary-low">
             <h1 class="u-pl-1">Search history</h1>
-            <button class="btn-list-item u-abs u-lh-4 u-border-none u-bg-none u-underline u-bold" id="button-clear-history">Clear search history</button>
+            <button class="u-ptr-0 u-abs u-lh-4 u-border-none u-bg-none u-underline u-bold" id="button-clear-history">Clear search history</button>
           </div>
           <ol id="ol-search-history">
-            <li class="search-history-item border-primary-low">
-              <article class="article-list-item u-lh-4 u-rel u-pl-1">
-                <h2>Blade Runner</h1>
-                <p class="list-item-date u-abs">2001-10-03, 10:43 PM</p>
-                <button class="btn-list-item u-border-none u-abs input-field-icon cross-icon u-bg-none"><span class="u-hide">Delete item</span></button>
-              </article>
-            </li>
-            <li class="search-history-item border-primary-low">
-              <article class="article-list-item u-lh-4 u-rel u-pl-1">
-                <h2>Blade Runner</h1>
-                <p>2001-10-03, 10:43 PM</p>
-                <button class="btn-list-item u-border-none u-abs input-field-icon cross-icon u-bg-none"><span class="u-hide">Delete item</span></button>
-              </article>
-            </li>
-            <li class="search-history-item border-primary-low">
-              <article class="article-list-item u-lh-4 u-rel u-pl-1">
-                <h2>Blade Runner</h1>
-                <p>2001-10-03, 10:43 PM</p>
-                <button class="btn-list-item u-border-none u-abs input-field-icon cross-icon u-bg-none"><span class="u-hide">Delete item</span></button>
-              </article>
-            </li>
+            <!-- dynamic content : insertResultIntoDOM() -->
           </ol>
         </section>
       </div>
