@@ -44,18 +44,44 @@ const insertResultIntoDOM = (searchStr, { Title: title, Error: error }) => {
   liElm.setAttribute("id", timestamp);
   const articleElm = document.createElement("article");
   const btnElm = document.createElement("button");
-  btnElm.innerHTML = "Delete";
-  const headingElm = document.createElement("h1");
+  const headingElm = document.createElement("h2");
   const txt = title ? title : `No result for:"${searchStr}": ${error}`;
   const pElm = document.createElement("p");
   pElm.innerHTML = `${toDateFormat(timestamp)}`;
+  const spanElm = document.createElement("span");
+  spanElm.innerHTML = "Delete item";
   btnElm.addEventListener("click", () => deleteElement(timestamp));
   headingElm.innerHTML += txt;
+  headingElm.classList.add("u-w-50");
+  liElm.classList.add("search-history-item", "border-primary-low");
+  articleElm.classList.add("article-list-item", "u-lh-4", "u-rel", "u-pl-1");
+  pElm.classList.add("list-item-date", "u-abs");
+  btnElm.classList.add(
+    "btn-list-item",
+    "u-border-none",
+    "u-abs",
+    "input-field-icon",
+    "cross-icon",
+    "u-bg-none"
+  );
+  spanElm.classList.add("u-hide");
   liElm.appendChild(articleElm);
   articleElm.appendChild(headingElm);
   articleElm.appendChild(pElm);
   articleElm.appendChild(btnElm);
+  btnElm.appendChild(spanElm);
   olSearchHistoryElm.appendChild(liElm);
+  /*
+            <li class="search-history-item border-primary-low">
+              <article class="article-list-item u-lh-4 u-rel u-pl-1">
+                <h2>Blade Runner</h1>
+                <p class="list-item-date u-abs">2001-10-03, 10:43 PM</p>
+                <button class="btn-list-item u-border-none u-abs input-field-icon cross-icon u-bg-none">
+                    <span class="u-hide">Delete item</span>
+                </button>
+              </article>
+            </li>
+ */
 };
 
 const startTimer = (fkn, args, delay) => {
@@ -72,7 +98,6 @@ until no more input arrives.*/
 const restartTimerAndInvoke = (fkn, data, stateTimerId, winClearTimeout) => {
   const delayTime = 500;
   if (stateTimerId) {
-    // window.clearTimeout(stateTimerId);
     winClearTimeout(stateTimerId);
   }
   const tId = startTimer(fkn, data, delayTime);
@@ -110,18 +135,24 @@ const doApiSearch = async (str, requestApiFkn, onSuccess) => {
 };
 
 const runIfNotPresent = (arr, str, fkn) => {
-    if (str && str.length > 0 && !arr.includes(str)) {
-        fkn(str);
-        return [...arr, str];
-    } else {
-        return arr;
-    }
+  if (str && str.length > 0 && !arr.includes(str)) {
+    fkn(str);
+    return [...arr, str];
+  } else {
+    return arr;
+  }
 };
-
 
 let stateTimerId;
 let searchHistory = [];
 const inputMovieTitleElm = document.getElementById("input-movie-title");
+const buttonClearInputElm = inputMovieTitleElm.parentElement.querySelector(
+  ".input-field-icon"
+);
+buttonClearInputElm.addEventListener(
+  "click",
+  e => (inputMovieTitleElm.value = "")
+);
 inputMovieTitleElm.addEventListener("input", e => {
   const cleanStr = limitLength(
     removeNotValid(confirmString(e.target.value)),
